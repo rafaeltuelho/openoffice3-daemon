@@ -19,4 +19,4 @@ EXPOSE ${SOFFICE_DAEMON_PORT}
 # Use a non root user to start the daemon
 USER 1001
 
-CMD ["/opt/openoffice.org3/program/soffice", "-accept=socket,host=0.0.0.0,port=${SOFFICE_DAEMON_PORT};urp;StarOffice.ServiceManager", "-nologo", "-headless", "-nofirststartwizard"]
+CMD ["/opt/openoffice.org3/program/soffice", "-accept=socket,host=0.0.0.0,port=8100;urp;StarOffice.ServiceManager", "-nologo", "-headless", "-nofirststartwizard"]
