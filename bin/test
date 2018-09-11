@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "test if the TCP port ${SOFFICE_DAEMON_PORT} is open"
+TCP_PORT_STATUS=`(echo > /dev/tcp/127.0.0.1/8102) >/dev/null 2>&1 && echo "LISTENING at ${SOFFICE_DAEMON_PORT}" || echo "${SOFFICE_DAEMON_PORT} is closed"`
+echo $TCP_PORT_STATUS
