@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo "starting soffice daemon as $(whoami) [id $(id)]"
+/opt/openoffice.org3/program/soffice "-accept=socket,host=0.0.0.0,port=$SOFFICE_DAEMON_PORT;urp;StarOffice.ServiceManager" -nologo -headless -nofirststartwizard
