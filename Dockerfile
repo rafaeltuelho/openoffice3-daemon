@@ -28,8 +28,8 @@ LABEL MAINTAINER="Rafael T. C. Soares <rafaelcba@gmail.com>" \
 ### Setup user for build execution and application runtime
 COPY pkgs/ /tmp/
 
-#RUN (curl -0 $OO_TGZ_URL | \
-RUN tar -zxf /tmp/OO*.tar.gz -C /tmp && \
+#RUN tar -zxf /tmp/OO*.tar.gz -C /tmp && \
+RUN (curl -0 $OO_TGZ_URL | tar -zx -C /tmp) && \
     yum localinstall -y /tmp/OOO*/RPMS/*.rpm && \
     yum install -y git make && \
     yum clean all -y && \
