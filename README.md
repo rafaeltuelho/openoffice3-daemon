@@ -12,8 +12,7 @@ This image was created following the **General Container Image Guidelines** for 
 ## Run the container
 
 ```
-docker run -it -u 123456 --name=soffice rafaeltuelho/openoffice3-daemon -p 8100:8100
-starting soffice daemon as user default [id uid=123456(default) gid=0(root) groups=0(root)]
+docker run -it -u 123456 --name=soffice -p 8100:8100 rafaeltuelho/openoffice3-daemon
 ```
 
 When you run this image the container will start the Openoffice daemon in headless mode listening on TCP port `8100` by default. To change this port pass the env var `SOFFICE_DAEMON_PORT`
@@ -24,6 +23,24 @@ When you run this image the container will start the Openoffice daemon in headle
 docker exec -it soffice test
 ```
 
+## Test soffice daemon using `unoconv`
+
+The `unoconv` utility is available in this image! You can test a PDF conversion as follow:
+
+
+ * first put some `.odt` or `.doc` files into a dir (eg: `~/pdfs`) in your host. 
+ * then run the container attaching that dir as a Docker Volume and specifying the file you want to convert"
+
+```
+docker run \
+ -v ~/pdfs:/pdfs:rw \
+ rafaeltuelho/openoffice3-daemon \
+ unoconv --connection 'socket,host=127.0.0.1,port=8100,tcpNoDelay=1;urp;StarOffice.ComponentContext' \
+ -f pdf /pdfs/somefile.odt"
+```
+
+ * now you should see the file converted to `.pdf` inside the dir mounted as Volume
+  
 ## Add this container as sidecar for any app depends on Openoffice for any reason (eg. PDF generation).
 
  * import the image and create an Openshift `ImageStream`
