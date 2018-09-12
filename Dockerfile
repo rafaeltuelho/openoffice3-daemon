@@ -9,16 +9,13 @@ ENV APP_ROOT=/opt/app-root
 ENV PATH=${APP_ROOT}/bin:${PATH} HOME=${APP_ROOT}
 
 ### Atomic/OpenShift Labels - https://github.com/projectatomic/ContainerApplicationGenericLabels
-LABEL MAINTAINER="Rafael T. C. Soares <rafaelcba@gmail.com>" \
-      name="acme/starter-arbitrary-uid" \
-      maintainer="refarch-feedback@redhat.com" \
-      vendor="Acme Corp" \
-      version="3.7" \
+LABEL name="rafaeltuelho/openoffice3-daemon" \
+      maintainer="Rafael T. C. Soares <rafaelcba@gmail.com>" \
+      version="1.0" \
       release="1" \
       summary="Acme Corp's Starter app" \
-      description="Starter app will do ....." \
-### Required labels above - recommended below
-      url="https://www.acme.io" \
+      description="Start the Openoffice headless daemon listening on ${SOFFICE_DAEMON_PORT}" \
+      url="https://github.com/rafaeltuelho/openoffice3-daemon" \
       run='docker run -tdi --name ${NAME} -u 123456 ${IMAGE}' \
       io.k8s.description="Start the Openoffice headless daemon listening on ${SOFFICE_DAEMON_PORT}" \
       io.k8s.display-name="Openoffice headless daemon" \
